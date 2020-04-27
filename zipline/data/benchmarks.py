@@ -37,7 +37,7 @@ def get_benchmark_returns(symbol):
     IEX_API_BASE_URL = os.environ['IEX_API_BASE_URL']
 
     r= requests.get(
-        IEX_API_BASE_URL + "stable/stock/{}/chart/5y?chartCloseOnly=True&token={}".format(symbol, IEX_API_KEY)
+        IEX_API_BASE_URL + "stable/stock/{}/chart/?token={}&chartCloseOnly=True".format(symbol, IEX_API_KEY)
     )
     data = json.loads(r.text)
 
