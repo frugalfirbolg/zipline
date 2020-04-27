@@ -17,7 +17,6 @@ import pandas as pd
 import requests
 import os
 
-
 def get_benchmark_returns(symbol):
     """
     Get a Series of benchmark returns from IEX associated with `symbol`.
@@ -33,9 +32,12 @@ def get_benchmark_returns(symbol):
     """
   
     IEX_API_KEY = os.environ['IEX_API_KEY']
+    #Production API: https://cloud.iexapis.com/
+    #Sandbox testing: https://sandbox.iexapis.com/
+    IEX_API_BASE_URL = os.environ['IEX_API_BASE_URL']
 
     r= requests.get(
-        "https://cloud.iexapis.com/stable/stock/{}/chart/5y?chartCloseOnly=True&token={}".format(symbol, IEX_API_KEY)
+        IEX_API_BASE_URL + "stable/stock/{}/chart/5y?chartCloseOnly=True&token={}".format(symbol, IEX_API_KEY)
     )
     data = json.loads(r.text)
 
