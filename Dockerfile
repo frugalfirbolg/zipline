@@ -54,6 +54,14 @@ RUN mkdir ${PROJECT_DIR} \
 
 WORKDIR /ta-lib
 
+RUN apt-get update
+
+
+RUN echo "deb-src http://deb.debian.org/debian buster-updates main" >> /etc/apt/sources.list \
+  && echo "deb-src http://deb.debian.org/debian buster main" >> /etc/apt/sources.list \
+  && apt-get -y install libhdf5-serial-dev
+RUN cat /etc/apt/sources.list
+
 RUN pip install 'numpy>=1.11.1,<2.0.0' \
   && pip install 'scipy>=0.17.1,<1.0.0' \
   && pip install 'pandas>=0.18.1,<1.0.0' \
